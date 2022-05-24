@@ -42,7 +42,7 @@ if(isset($_POST["additions"])){
 <section>
 <div class="container mt-4 mb-4 bg-light border border-info">
     <!-- het formulier vullen met de juiste velden -->
-    <form name="calculate" method="post" action="huisjes.php?<?php echo $cottageID;?>">
+    <form name="calculate" method="post" action="huisjes.php?cottageID=<?php echo $cottageID;?>">
         <div class="row px-4 py-4">
             <div class="col-12 mb-4">
                 <h2>Bereken prijs</h2>
@@ -113,7 +113,7 @@ if($calcPrice == true){
         if($counter < count($selAdditions)) {$additionNames .= ", ";}
 
         //CHECK de totaalprijs van alle additions bij elkaar berekenen, nu maar even alleen een neerzetten nog toevoegen dat hij ze allemaal optelt
-        $totalAdditions = $value * $AmountAdd[$key];
+        $totalAdditions += $value * $AmountAdd[$key];
 
         $counter++;
     }
@@ -130,9 +130,9 @@ if($calcPrice == true){
     //prijs voor volwassenen
     $totalPriceA =  ($numberAdults * $numberNights) * $CottagePriceA;
     //CHECK prijs voor kinderen, berekening nog maken!
-    $totalPriceC =  0;
+    $totalPriceC =  ($numberChilds * $numberNights) * $CottagePriceC;
     //CHECK alle additions * aantal dagen/nachten nog berekenen
-    $totalAdditions =  0;
+    $totalAdditions =  $totalAdditions * $numberNights;
 
     ?>
 <section>

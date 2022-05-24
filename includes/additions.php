@@ -1,15 +1,13 @@
 <?php 
-// include 'includes/database.php';
-// include 'includes/functions.php';
-
-$sql="SELECT addition_name, addition_price FROM additions";
-
-$additions = getData($sql, "fetchAll");
-
-foreach ($additions as $value) {
-    echo $value['addition_name'] . "<br>";
-    echo $value['addition_price'] . "<br>";
-}
+$tblAdditions = getData("SELECT * FROM `additions`", "fetchAll");
+?>
+                <h4>Extra's (per persoon per dag)</h4>
+                    <ul class="list-group list-group-flush">
+                        <?php  
+                        foreach($tblAdditions as $addition) { ?>
+                            <li class="list-group-item"><?php echo $addition["addition_name"];?> &euro; <?php echo $addition["addition_price"];?></li>
+                        <?php } //end foreach ?>
+                    </ul>
 
 
 ?>
